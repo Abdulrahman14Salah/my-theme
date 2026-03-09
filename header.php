@@ -27,14 +27,7 @@
     })(window,document,'script','dataLayer','GTM-PCRBP2TB');</script>
     <!-- End Google Tag Manager -->
     
-    <script src="https://analytics.ahrefs.com/analytics.js" data-key="qzmWDeZGuq/0ychhIKTjyQ" async></script>
-    <script>
-      var ahrefs_analytics_script = document.createElement('script');
-      ahrefs_analytics_script.async = true;
-      ahrefs_analytics_script.src = 'https://analytics.ahrefs.com/analytics.js';
-      ahrefs_analytics_script.setAttribute('data-key', 'qzmWDeZGuq/0ychhIKTjyQ');
-      document.getElementsByTagName('head')[0].appendChild(ahrefs_analytics_script);
-    </script>
+	    <script src="https://analytics.ahrefs.com/analytics.js" data-key="qzmWDeZGuq/0ychhIKTjyQ" async></script>
 	<?php wp_head(); ?>
 </head>
 
@@ -51,8 +44,8 @@
 				<div class="container">
 					<div class="flex flex-wrap items-center justify-between py-2 sm:py-4">
 						<div class="w-full items-center flex justify-between lg:w-auto">
-							<a href="<?php echo home_url(); ?>" class="flex items-center">
-						<img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" class="me-3" width="32" height="33" alt="Abdulrahman Salah Logo" />
+							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex items-center">
+						<img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/logo.png' ); ?>" class="me-3" width="32" height="33" alt="<?php esc_attr_e( 'Abdulrahman Salah Logo', 'a-salah' ); ?>" />
 						<span class="self-center text-2xl font-semibold whitespace-nowrap text-primary-300">Abdulrahman Salah</span>
 					</a>
 							<div class="flex lg:hidden">
@@ -95,7 +88,7 @@
 							</div>
 
 							<div class="w-full space-y-2 gap-2 pt-6 pb-4 lg:pb-0 border-t items-center flex flex-col lg:flex-row lg:space-y-0 lg:w-fit lg:border-l lg:border-t-0 lg:pt-0 lg:pl-2">
-								<a href="<?php echo home_url(); ?>" class="btn variant-neutral sz-sm">
+								<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="btn variant-neutral sz-sm">
 									<span>Get Quote</span>
 								</a>
 							</div>

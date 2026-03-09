@@ -13,6 +13,10 @@ if (! defined('_S_VERSION')) {
 	define('_S_VERSION', '1.0.0');
 }
 
+if ( ! defined( 'A_SALAH_GITHUB_REPO' ) ) {
+	define( 'A_SALAH_GITHUB_REPO', 'Abdulrahman14Salah/my-theme' );
+}
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -195,7 +199,9 @@ function a_salah_scripts()
 	wp_style_add_data('a-salah-style', 'rtl', 'replace');
 	wp_enqueue_style('tailwind-css', get_template_directory_uri() . '/frontend/public/style.min.css', array(), _S_VERSION, 'all');
 	wp_enqueue_script('a-salah-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true);
+	wp_script_add_data( 'a-salah-navigation', 'strategy', 'defer' );
 	wp_enqueue_script('a-salah-main-js', get_template_directory_uri() . '/js/main.js', array('jquery'), _S_VERSION, true);
+	wp_script_add_data( 'a-salah-main-js', 'strategy', 'defer' );
 
 	wp_localize_script('a-salah-main-js', 'a_salah_ajax', array(
 		'ajax_url' => admin_url('admin-ajax.php'),
@@ -213,11 +219,12 @@ add_action('wp_enqueue_scripts', 'a_salah_scripts');
  */
 function a_salah_load_more_posts() {
 	check_ajax_referer('a_salah_nonce', 'nonce');
+	$page = isset( $_POST['page'] ) ? max( 1, absint( wp_unslash( $_POST['page'] ) ) ) : 1;
 
 	$args = array(
 		'post_type' => 'post',
 		'post_status' => 'publish',
-		'paged' => $_POST['page'],
+		'paged' => $page,
 	);
 
 	$query = new WP_Query($args);
@@ -278,6 +285,11 @@ require get_template_directory() . '/inc/security.php';
  * SEO Enhancements.
  */
 require get_template_directory() . '/inc/seo.php';
+
+/**
+ * GitHub updater integration.
+ */
+require get_template_directory() . '/inc/github-updater.php';
 
 /**
  * Block Styles.
